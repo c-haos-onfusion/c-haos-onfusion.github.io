@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="UTF-8" />
-        <title>Archives | 瞎写</title>
+        <title>hexo部署 | 瞎写</title>
         <meta name="author" content="MEOW-MEWO" />
         <meta name="description" content="" />
         <meta name="keywords" content="python 强化学习 dnn" />
@@ -27,6 +27,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -139,40 +143,82 @@
     </div>
 </nav>
 
-                
-<div id="archives">
-    
-    <div id="timeline-wrap" ref="timeline">
+                <div class="article">
+    <div>
+        <h1>hexo部署</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/3/31
+        </span>
         
-        <div class="timeline" data-title="helloworld">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/2</div>
-                <a href="/2023/03/02/hello-world/">
-                    <h3>Hello World</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="hexo部署">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/3/31</div>
-                <a href="/2023/03/31/hexo%E9%83%A8%E7%BD%B2/">
-                    <h3>hexo部署</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
         
     </div>
+    
+    <div class="content" v-pre>
+        <h2 id="hexo-github部署"><a href="#hexo-github部署" class="headerlink" title="hexo + github部署"></a>hexo + github部署</h2><h3 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h3><ul>
+<li>git安装</li>
+<li>nodejs安装</li>
+<li>hexo安装<ul>
+<li>使用npm安装hexo <code>npm install -g hexo-cli</code> </li>
+<li>初始化博客    <code>hexo init blog</code></li>
+<li>生成 <code>hexo g</code>&#x3D; <code>hexo generate</code></li>
+<li>本地预览 <code>hexo s</code>&#x3D;<code>hexo server</code></li>
+<li>打开localhost:4000预览</li>
+</ul>
+</li>
+</ul>
+<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><ul>
+<li>github新建repo</br><br>  <strong>注意repo名为github用户名.github.io</strong></br><br>  <strong>例如 用户名为hybai的用户 新建repo为hybai.github.io</strong></li>
+<li>将hexo和github链接</br><br>  找到创建的博客文件夹下的_config.yml文件</br><br>  修改deploy</br><pre><code>deploy:
+type: git
+repo: git@github.com:c-haos-onfusion/c-haos-onfusion.github.io.git
+branch: gh-pages
+</code></pre>
+  <strong>repo用ssh的，不然会报错10054</strong></br><br>  输入三条命令<pre><code>hexo clean 
+hexo g 
+hexo d
+</code></pre>
+  <code>hexo d</code>&#x3D;<code>hexo deploy</code></li>
+</ul>
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><ul>
+<li>在阿里云买域名</li>
+<li>配置域名<br>   <img src="https://raw.githubusercontent.com/c-haos-onfusion/blogimg/main/bcdf66cc8c2b9e49d92d218e437b0d3.png" alt="域名解析设置"></li>
+<li>github配置<br>  <img src="https://raw.githubusercontent.com/c-haos-onfusion/blogimg/main/3c7a5b44d8222ce9f2520aef6787423.png" alt="配置github域名"></li>
+<li>在source文件夹下创建CNAME文件，写入购买的域名</li>
+<li>输入三条命令<pre><code>hexo clean 
+hexo g 
+hexo d
+</code></pre>
+</li>
+</ul>
+<h3 id="github创建免费图床"><a href="#github创建免费图床" class="headerlink" title="github创建免费图床"></a>github创建免费图床</h3><pre><code>因为写博客需要插入图片，需要一个稳定图床保存图片，获取url，采用github的repo做图床，搭配picgo
+</code></pre>
+<ul>
+<li>下载picgo</li>
+<li>github新建图床repo 随便命名</li>
+<li>配置picgo<br>  <img src="https://raw.githubusercontent.com/c-haos-onfusion/blogimg/main/1c80658dbbaf0ef00a6fb8282c26d10.png" alt="配置picgo的github图床"><br>  其中token在github中用户settings&#x2F;developer setting里<br>  <img src="https://raw.githubusercontent.com/c-haos-onfusion/blogimg/main/16fac458a5271402038cee1fd142f27.png" alt="github生成用户token"><br><strong>至此，图床创建好了</strong></li>
+</ul>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><pre><code>这里采用particlex的主题
+</code></pre>
+<ul>
+<li>可按照particlex主题的<a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">教程修改</a></br></li>
+<li>修改 <code>theme: hexo-theme-particlex-master</code> </br><br>  <strong>注意！只修改这里只能在本地预览到主题的变更，但deploy后网络上主题没变</strong>  </br>
+  需要修改url `url: https://c-haos-onfusion.github.io/`</li>
+<li>主题修改的其他细节参见所使用主题的教程</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
 </div>
 
                 <footer id="footer">
@@ -204,6 +250,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>
